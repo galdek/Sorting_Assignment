@@ -1,4 +1,4 @@
-# Data Structures - Assignment 1 - Sorting Assignment
+# Data Structures - Python Assignment 1 - Sorting Algorithms
 
 # Students:
 Gal Dekel & Ziv Goldstein 
@@ -6,7 +6,7 @@ Gal Dekel & Ziv Goldstein
 # Selected Algorithms:
 - Insertion Sort  
 - Merge Sort  
-- Quick Sort  
+- Selection Sort  
 
 ## Results – Part B (Random Arrays)
 
@@ -16,12 +16,12 @@ Gal Dekel & Ziv Goldstein
 
 The graph shows the running times of the three algorithms on random arrays of increasing sizes.
 
-- **Insertion Sort** grows much faster than the other algorithms as the input size increases.  
-  This is expected because its time complexity is \(O(n^2)\).
+- **Insertion Sort** and **Selection Sort** both grow much faster than Merge Sort as the input size increases.  
+  This is expected because their time complexity is \(O(n^2)\).
 
-- **Merge Sort** and **Quick Sort** both grow much more slowly.  
-  Their time complexity is \(O(n \log n)\), making them more efficient for larger inputs.
+- **Merge Sort** grows much more slowly.  
+  Its time complexity is \(O(n \log n)\), making it more efficient for larger inputs.
 
-- **Quick Sort** is generally slightly faster than Merge Sort in practice, due to lower constant factors.
+- Between the two quadratic algorithms, **Insertion Sort** is usually slightly faster than Selection Sort in practice, especially for smaller inputs.
 
 ---
