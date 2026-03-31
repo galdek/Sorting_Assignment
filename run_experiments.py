@@ -25,7 +25,7 @@ def insertion_sort(arr):                         # The insertion sort function, 
 def merge_sort(arr):  # Divide 
     if len(arr) <= 1:                            # The Base case: If array is already sorted we return the same array
         return arr
-    mid = len(arr) // 2                          # Find middle index and recuresively sort halves
+    mid = len(arr) // 2                          # Find middle index and then recursively sort both halves
     left = merge_sort(arr[:mid])                 
     right = merge_sort(arr[mid:])                
     return merge(left, right)                    # Merge the two sorted halves
@@ -59,13 +59,6 @@ def selection_sort(arr):
 # ------------------------------ Part B: Comparative Experiment - Random Arrays -----------------------------------------------------
 # This section compares the behavior of the 3 chosen algorithms, and produces a plot for demonstration
 
-def calculate_stats(data):                                   # Function that analyzes the average runtime + deviations for the algorithms
-    n = len(data)                                            # Number of runs/measurements
-    mean_val = sum(data) / n                                 # Compute mean/average runtime across all measurements 
-    variance = sum((x - mean_val) ** 2 for x in data) / n    # Computing the variance
-    std_dev = math.sqrt(variance)                            # Standard deviation = sqrt of variance
-    return mean_val, std_dev                                 # Return both average and standard deviation
-
 def experiment_B(sizes, reps=5):                             # Function that runs the measurements for the algorithms for section B
     # Dictionary where we store results for each algorithm
     results = {"Insertion Sort": {"avg": [], "std": []}, "Merge Sort": {"avg": [], "std": []}, "Selection Sort": {"avg": [], "std": []}}                                           
@@ -87,6 +80,14 @@ def experiment_B(sizes, reps=5):                             # Function that run
             results[name]["std"].append(std)
     return results                                           # Returning all collected results for plotting
 
+def calculate_stats(data):                                   # Function that analyzes the average runtime + deviations for the algorithms
+    n = len(data)                                            # Number of runs/measurements
+    mean_val = sum(data) / n                                 # Compute mean/average runtime across all measurements 
+    variance = sum((x - mean_val) ** 2 for x in data) / n    # Computing the variance
+    std_dev = math.sqrt(variance)                            # Standard deviation = sqrt of variance
+    return mean_val, std_dev                                 # Return both average and standard deviation
+
+
 # The function that generates the plot for section B
 def results_graph(sizes, results, filename="result1.png"):
     plt.figure(figsize=(10, 6))                                        # Create figure with size
@@ -98,12 +99,11 @@ def results_graph(sizes, results, filename="result1.png"):
         upper_bound = [a + s for a, s in zip(avg, std)]
         plt.fill_between(sizes, lower_bound, upper_bound, alpha=0.2)
     plt.title("Section B - Runtime Comparison: Insertion, Merge, and Selection Sort")  # Titles and legends of plot
+    plt.grid(True, linestyle='-', alpha=0.5) 
+    plt.legend()    
     plt.xlabel("Array size (n)")
-    plt.ylabel("Runtime (seconds)")
-    plt.legend()                  
-    plt.grid(True, linestyle='--', alpha=0.5)  
+    plt.ylabel("Runtime (seconds)")     
     plt.savefig(filename)         
-    print(f"Plot saved as {filename}")                                 # We save the plot as png file
     plt.show()                    
 
 # ---------------------------------------------------------Main/Entry point--------------------------------------------------------------------------
