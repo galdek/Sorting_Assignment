@@ -25,9 +25,9 @@ def insertion_sort(arr):                         # The insertion sort function, 
 def merge_sort(arr):  # Divide 
     if len(arr) <= 1:                            # The Base case: If array is already sorted we return the same array
         return arr
-    mid = len(arr) // 2                          # Find middle index
-    left = merge_sort(arr[:mid])                 # Recursively sort left half
-    right = merge_sort(arr[mid:])                # Recursively sort right half
+    mid = len(arr) // 2                          # Find middle index and recuresively sort halves
+    left = merge_sort(arr[:mid])                 
+    right = merge_sort(arr[mid:])                
     return merge(left, right)                    # Merge the two sorted halves
 
 def merge(left, right): # Conquer
