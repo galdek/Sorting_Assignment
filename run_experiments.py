@@ -88,7 +88,7 @@ def experiment_B(sizes, reps=5):                             # Function that run
     return results                                           # Returning all collected results for plotting
 
 # The function that generates the plot for section B
-def plot_results(sizes, results, filename="result1.png"):
+def results_graph(sizes, results, filename="result1.png"):
     plt.figure(figsize=(10, 6))                                        # Create figure with size
     for name, data in results.items():                                 # The data for the plot for each algorithm
         avg = data["avg"]                                              # The Average runtimes of the algorithms
@@ -110,4 +110,4 @@ def plot_results(sizes, results, filename="result1.png"):
 if __name__ == "__main__":
     input_sizes = [100, 500, 1000, 1500, 2000, 2500, 3000]       # Generating different array sized for different measurements
     experiment_results_B = experiment_B(input_sizes, reps=5)     # Running the experiment for section B experiment
-    plot_results(input_sizes, experiment_results_B)              # Plotting the results
+    results_graph(input_sizes, experiment_results_B)              # Plotting the results
