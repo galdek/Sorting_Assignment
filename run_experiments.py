@@ -1,4 +1,4 @@
-# Data structures Assignment 
+# Data structures - Python Assignment 1 - Sorting Algorithms 
 import matplotlib.pyplot as plt     # For Graph generation
 import math                         # For mathematical operations
 import time                         # For running time measurment of the algorthims
