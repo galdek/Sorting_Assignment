@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt  # For Graph generation
 import math  # For mathematical operations
 import time  # For running time measurment of the algorthims
 import random  # For random array generation
-import argparse
+import argparse # Allows program to read inputs from the terminal/command line when running the script
 
 
 
