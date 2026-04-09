@@ -4,9 +4,9 @@
 Gal Dekel & Ziv Goldstein 
 
 # Selected Algorithms:
+- Selection Sort 
 - Insertion Sort  
-- Merge Sort  
-- Selection Sort  
+- Merge Sort   
 
 ## Results – Part B (Random Arrays)
 
