@@ -168,68 +168,26 @@ def results_graph(sizes, results,title, filename="result1.png"):
 
 
 # ---------------------------------------------------------Main/Entry point--------------------------------------------------------------------------
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Sorting Algorithms Experiments")
+# In this section, we handle the user input from the command line (Which algorithms, sizes of arrays, repetitions and noise levels to be used in a given experiment)
+# After this we run the two different experiments for the two graphs that we produce
+if __name__ == "__main__":                                        
+    parser = argparse.ArgumentParser(description="Sorting Algorithms Experiments")   
+    parser.add_argument("-a", nargs="+", type=int, default=[2, 3, 4], help="Algorithms to compare: 1-Bubble, 2-Selection, 3-Insertion, 4-Merge, 5-Quick")  # Choose algorithms by chosed ID
+    parser.add_argument("-s", nargs="+", type=int, default=[100, 500, 1000, 2000, 3000], help="Array sizes")             # Different input sizes
+    parser.add_argument("-e", type=int, default=1, help="Experiment type / noise level: 1 = 5%% noise, 2 = 20%% noise")  #The noise level
+    parser.add_argument("-r", type=int, default=5, help="Number of repetitions")                                         # Number of times each experiment excecutes - to clc average 
+    args = parser.parse_args()  
+    selected_algorithms = get_algorithms_by_ids(args.a)  
+    if not selected_algorithms: print("No valid implemented algorithms were selected."); exit()                         
+    noise_level = 0.05 if args.e == 1 else 0.20                                                                           # Set noise level based on type of experiment (5% or 20%)
 
-    parser.add_argument(
-        "-a",
-        nargs="+",
-        type=int,
-        default=[2, 3, 4],
-        help="Algorithms to compare: 1-Bubble, 2-Selection, 3-Insertion, 4-Merge, 5-Quick"
-    )
-
-    parser.add_argument(
-        "-s",
-        nargs="+",
-        type=int,
-        default=[100, 500, 1000, 2000, 3000],
-        help="Array sizes"
-    )
-
-    parser.add_argument(
-        "-e",
-        type=int,
-        default=1,
-        help="Experiment type / noise level: 1 = 5%% noise, 2 = 20%% noise"
-    )
-
-    parser.add_argument(
-        "-r",
-        type=int,
-        default=5,
-        help="Number of repetitions"
-    )
-
-    args = parser.parse_args()
-
-    selected_algorithms = get_algorithms_by_ids(args.a)
-
-    if not selected_algorithms:
-        print("No valid implemented algorithms were selected.")
-        exit()
-
-    noise_level = 0.05 if args.e == 1 else 0.20
-
-    # Part B
-    experiment_results_B = experiment_B(args.s, selected_algorithms, reps=args.r)
-    results_graph(
-        args.s,
-        experiment_results_B,
-        "Runtime Comparison on Random Arrays",
-        "result1.png"
-    )
-
-    # Part C
-    experiment_results_C = experiment_C(
-        args.s,
-        selected_algorithms,
-        noise_level=noise_level,
-        reps=args.r
-    )
-    results_graph(
-        args.s,
-        experiment_results_C,
-        f"Runtime Comparison on Nearly Sorted Arrays (noise={int(noise_level * 100)}%)",
-        "result2.png"
-    )
+# Run Section B experiment
+    experiment_results_B = experiment_B(args.s, selected_algorithms, reps=args.r)                                         
+    results_graph(args.s, experiment_results_B, "Runtime Comparison on Random Arrays", "result1.png")                    
+# Run Section C experiment
+    experiment_results_C = experiment_C(args.s, selected_algorithms, noise_level=noise_level, reps=args.r)  
+    results_graph(args.s, experiment_results_C, f"Runtime Comparison on Nearly Sorted Arrays (noise={int(noise_level * 100)}%)", "result2.png")  
+        
+        
+        
+    
